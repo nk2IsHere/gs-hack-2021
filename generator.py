@@ -2,10 +2,11 @@ from abc import ABC, abstractmethod
 from random import random
 from typing import Dict
 
-#from executor import Args
+# from executor import Args
 from test import TestMetadata
 
-Args = any
+Args = Dict[str, any]
+
 
 class Generator(ABC):
   def __init__(self, args: Args):

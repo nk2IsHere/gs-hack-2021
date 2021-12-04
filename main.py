@@ -31,14 +31,10 @@ testByName = {
 }
 
 if __name__ == "__main__":
-  tests_folder_path = sys.argv[1]
-  env_path = sys.argv[2]
+  project_folder_path = sys.argv[1]
 
-  if not os.path.isdir(tests_folder_path):
-    raise Exception("Tests argument not a folder")
-
-  if not os.path.isfile(env_path):
-    raise Exception("Env argument not a file")
+  if not os.path.isdir(project_folder_path):
+    raise Exception("Project argument not a folder")
 
   with open(env_path) as env_file:
     environment = load(env_file)

@@ -2,13 +2,13 @@ from abc import ABC, abstractmethod
 from collections import namedtuple
 from datetime import time
 from enum import Enum, auto
-from typing import List
+from typing import List, Dict
 
 from executor import Executor, ExecutorMetrics, Args, ExecutorRunningConfig
 # from generator import Data
 from test_metadata import TestMetadata
 
-Data = any
+Data = Dict[str, any]
 
 
 class TestResultState(Enum):

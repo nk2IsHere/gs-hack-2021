@@ -3,14 +3,13 @@ from collections import namedtuple
 from typing import Dict
 
 from connection import Connection
-# from generator import Data
 from protocol import Protocol
 from test_metadata import TestMetadata
 
 ExecutionResult = namedtuple('ExecutionResult', ['output', 'metrics'])
 ExecutorMetrics = Dict[str, any]
 Args = Dict[str, any]
-Data = any
+Data = Dict[str, any]
 
 
 class ExecutorRunningConfig(ABC):

@@ -1,13 +1,11 @@
 import json
 from abc import ABC, abstractmethod
+from typing import Dict
 
-# from executor import Args
-#from generator import Data
 from test_metadata import TestMetadata
 
-Args = any
-Data = any
-
+Args = Dict[str, any]
+Data = Dict[str, any]
 
 
 class Protocol(ABC):
