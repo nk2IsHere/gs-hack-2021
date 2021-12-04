@@ -1,0 +1,29 @@
+connection: python-server
+
+data:
+    path:
+        type: constant value
+        value: /demo/endpoint
+    query:
+        type: file read generator
+        path: ./data-input.txt
+        split: newline
+    output:
+        type: file read generator
+        path: ./data-output.txt
+        split: newline
+
+protocol:
+    type: http
+    method: GET
+    path: path
+    query: query
+
+
+test:
+    type: reliability
+    validation:
+        error rate: 1/100
+        output: output
+    execution:
+        repetition count: 1000

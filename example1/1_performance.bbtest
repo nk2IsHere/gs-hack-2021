@@ -1,0 +1,21 @@
+connection: fib
+data:
+    number:
+        type: random number generator
+        min: 20
+        max: 30
+        key: number
+
+protocol:
+    type: ascii plain
+    input: number
+
+test:
+    type: performance
+    validation:
+        response time: <= 5ms
+        throughput: 1000 rps
+    execution:
+        warmup runs count: 250
+        iterations: 500
+        batches: 5

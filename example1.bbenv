@@ -1,0 +1,5 @@
+connections:
+    fib:
+        type: tcp
+        port: 578
+        ip: 127.0.0.1
