@@ -37,8 +37,8 @@ def install_generator(code, file_name):
   print(f"Instantiating generator: {file_name}")
   generatorsByType[file_name.replace('.bbgen', '')] = lambda args: JavaScriptGenerator(args, code)
 
-def install_test(content, file_name):
-  test_config = load(content)
+def install_test(file, file_name):
+  test_config = load(file)
   data = {
     key: generatorsByType[generator_config['type']](generator_config)
     for key, generator_config in test_config['data'].items()
@@ -58,9 +58,9 @@ if __name__ == "__main__":
 
   files = os.listdir(project_folder_path)
 
-  env_files = [file for file in files if file.split('.') == 'bbenv']
-  test_files = [file for file in files if file.split('.') == 'bbtest']
-  gen_files = [file for file in files if file.split('.') == 'bbtest']
+  env_files = [file for file in files if file.split('.')[1] == 'bbenv']
+  test_files = [file for file in files if file.split('.')[1] == 'bbtest']
+  gen_files = [file for file in files if file.split('.')[1] == 'bbgen']
 
   if len(env_files) != 1:
     raise Exception("Project needs exactly one bbenv file")
@@ -69,7 +69,7 @@ if __name__ == "__main__":
     environment = load(env_file)
 
   for file_name in gen_files:
-    with open(os.path.join(project_folder_path, file)) as file:
+    with open(os.path.join(project_folder_path, file_name)) as file:
       install_generator(file.read(), file_name)
 
   for name, connection in environment['connections'].items():
@@ -77,7 +77,7 @@ if __name__ == "__main__":
 
   for test_file_name in test_files:
     with open(os.path.join(project_folder_path, test_file_name)) as file:
-      install_test(file.read(), test_file_name)
+      install_test(file, test_file_name)
 
   for name, test in tests.items():
     print(f'Executing test {name}')

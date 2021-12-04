@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from collections import namedtuple
-from datetime import time
 from enum import Enum, auto
+from time import time
 from typing import List, Dict
 
 from executor import Executor, ExecutorMetrics, Args, ExecutorRunningConfig
@@ -81,10 +81,10 @@ class ReliabilityTest(Test):
 class PerformanceTestExecutorRunningConfig(ExecutorRunningConfig):
 
   def before(self) -> ExecutorMetrics:
-    return {'start_time': time.time()}
+    return {'start_time': time()}
 
   def delta(self, initial_metrics: ExecutorMetrics) -> ExecutorMetrics:
-    return {'execution_time': time.time() - initial_metrics['start_time']}
+    return {'execution_time': time() - initial_metrics['start_time']}
 
 
 class PerformanceTest(Test):
