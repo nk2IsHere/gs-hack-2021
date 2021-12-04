@@ -30,8 +30,10 @@ class Executor:
     self.connection = connection
 
   def run(self, data: Data, running_config: ExecutorRunningConfig, test_metadata: TestMetadata) -> ExecutionResult:
+    input = self.protocol.input(data, test_metadata)
     metrics = running_config.before()
-    output = self.protocol.output(self.connection.send(self.protocol.input(data, test_metadata)))
+    output_raw = self.connection.send(input)
     metrics = running_config.delta(metrics)
+    output = self.protocol.output(output_raw)
 
     return ExecutionResult(output, metrics)
