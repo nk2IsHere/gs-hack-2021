@@ -1,17 +1,18 @@
 from abc import ABC, abstractmethod
-from plistlib import Dict
 from random import random
+from typing import Dict
 
-from executor import Args
+#from executor import Args
 from test import TestMetadata
 
+Args = any
 
 class Generator(ABC):
   def __init__(self, args: Args):
     self.args = args
 
   @abstractmethod
-  def next(self, test_metadata: TestMetadata) -> T:
+  def next(self, test_metadata: TestMetadata) -> any:
     pass
 
 

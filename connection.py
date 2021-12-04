@@ -4,7 +4,8 @@ from typing import Dict
 
 import requests
 
-from executor import Args
+Args = Dict[str, any]
+Data = Dict[str, any]
 
 
 class Connection(ABC):

@@ -1,9 +1,13 @@
 import json
 from abc import ABC, abstractmethod
 
-from executor import Args
-from generator import Data
-from test import TestMetadata
+# from executor import Args
+#from generator import Data
+from test_metadata import TestMetadata
+
+Args = any
+Data = any
+
 
 
 class Protocol(ABC):
@@ -16,7 +20,7 @@ class Protocol(ABC):
     pass
 
   @abstractmethod
-  def output(self, data: any) -> R:
+  def output(self, data: any) -> any:
     pass
 
 

@@ -5,13 +5,10 @@ from enum import Enum, auto
 from typing import List
 
 from executor import Executor, ExecutorMetrics, Args, ExecutorRunningConfig
-from generator import Data
+# from generator import Data
+from test_metadata import TestMetadata
 
-
-class TestMetadata:
-
-  def __init__(self, current_position: int):
-    self.current_position = current_position
+Data = any
 
 
 class TestResultState(Enum):
@@ -53,7 +50,7 @@ class ReliabilityTest(Test):
     self.request_count = int(self.args['execution']['repetition count'])
     self.error_rate = self.args['validation']['error rate']
 
-  def _validate_result_get_state(self, output: R, metrics: ExecutorMetrics) -> TestResultState:
+  def _validate_result_get_state(self, output: any, metrics: ExecutorMetrics) -> TestResultState:
     next_expected_output = self.data['output'].next(self.test_metadata)
     is_same = next_expected_output == output
     if not is_same:
