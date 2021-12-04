@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from random import random
 from typing import Dict
+import execjs
 
 # from executor import Args
 from test import TestMetadata
@@ -46,3 +47,12 @@ class ConstantGenerator(Generator):
 
   def next(self, test_metadata: TestMetadata) -> any:
     return self.args['value']
+
+
+class JavaScriptGenerator(Generator):
+  def __init__(self, args: Args, code: str):
+    super(JavaScriptGenerator, self).__init__(args)
+    self.ctx = execjs.compile(code)
+
+  def next(self, test_metadata: TestMetadata) -> any:
+    self.ctx.call('generate', self.args, test_metadata.__dict__)
