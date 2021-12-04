@@ -55,4 +55,4 @@ class JavaScriptGenerator(Generator):
     self.ctx = execjs.compile(code)
 
   def next(self, test_metadata: TestMetadata) -> any:
-    self.ctx.call('generator', self.args, test_metadata.__dict__)
+    return self.ctx.call('generator', self.args, test_metadata.__dict__)

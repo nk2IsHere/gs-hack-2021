@@ -13,9 +13,9 @@ protocol:
 test:
     type: performance
     validation:
-        response time: <= 5ms
-        throughput: 1000 rps
+        response time: <= 10ms
+        throughput: 20 rps
     execution:
-        warmup runs count: 250
-        iterations: 500
+        warmup runs count: 100
+        iterations: 100
         batches: 5

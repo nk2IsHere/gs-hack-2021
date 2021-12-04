@@ -24,9 +24,11 @@ class TcpConnection(Connection):
     super().__init__(args)
 
   def send(self, input: bytes) -> bytes:
+    assert input is not None
     soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     address = (self.args['ip'], int(self.args['port']))
     soc.connect(address)
+
     soc.sendall(input)
 
     return soc.recv(2000)
