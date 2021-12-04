@@ -33,9 +33,11 @@ testByName = {
 connections = {}
 tests = {}
 
+
 def install_generator(code, file_name):
   print(f"Instantiating generator: {file_name}")
   generatorsByType[file_name.replace('.bbgen', '')] = lambda args: JavaScriptGenerator(args, code)
+
 
 def install_test(content, file_name):
   test_config = load(content)
@@ -49,6 +51,7 @@ def install_test(content, file_name):
     protocol=protocolByName[test_config['protocol']['type']](test_config['protocol']),
     test=testByName[test_config['test']['type']](data, test_config['test']),
   )
+
 
 if __name__ == "__main__":
   project_folder_path = sys.argv[1]

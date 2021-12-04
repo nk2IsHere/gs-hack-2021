@@ -28,14 +28,17 @@ int main(int argc, char **argv) {
 //        pid_t pid = fork();
         char buf[64];
         ssize_t len = read(acceptsock, buf, 63);
-        buf[len] = 0;
-        long long int v = std::stoll(buf);
+        if(len > 0) {
+            buf[len] = 0;
 
-        std::cout << "fib[" << v << "]: ";
-        auto s = std::to_string(fib(v));
-        std::cout << s << "\n";
-        write(acceptsock, s.c_str(), s.length());
-        close(acceptsock);
+            long long int v = std::stoll(buf);
+
+            std::cout << "fib[" << v << "]: ";
+            auto s = std::to_string(fib(v));
+            std::cout << s << "\n";
+            write(acceptsock, s.c_str(), s.length());
+            close(acceptsock);
+        }
 //        if(pid == 0)
 //            return 0;
     }
